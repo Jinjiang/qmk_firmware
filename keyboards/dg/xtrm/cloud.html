@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Xtrm Firmware</title>
+  <link rel="stylesheet" href="https://unpkg.com/bootstrap@4.5.3/dist/css/bootstrap.min.css">
+  <script src="http://qmkeyboard.cn/js/Blob.js"></script>
+  <script src="http://qmkeyboard.cn/js/filesaver.min.js"></script>
+  <style>textarea { font-family: monospace; resize: none; }</style>
+</head>
+<body>
+  <div class="container">
+    <br>
+    <h2>Xtrm Firmware</h2>
+    <br>
+    <form>
+      <h4>布局（<a href="https://beta.docs.qmk.fm/using-qmk/simple-keycodes/keycodes_basic">按键编码说明</a>）</h4>
+      
+      <h6>第一层</h6>
+      <div class="form-group mb-2 row">
+        <textarea class="form-control" rows="4" resize="no">KC_ESC,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC, 
+KC_TAB,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,             KC_ENT, 
+KC_LSFT,          KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_RSFT, KC_UP,   KC_CAPS, 
+KC_LCTL, KC_LGUI,          KC_LALT, KC_PGUP, KC_SPC,  KC_PGDN, MO(1),   MO(2),   KC_LEFT, KC_DOWN, KC_RGHT</textarea>
+      </div>
+      <br>
+
+      <h6>第二层</h6>
+      <div class="form-group mb-2 row">
+        <textarea class="form-control" rows="4" resize="no">KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSLS, 
+KC_CAPS, KC_INS,  KC_HOME, KC_PGUP, KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_SCLN, KC_QUOT,          KC_TRNS, 
+KC_TRNS,          KC_DEL,  KC_END,  KC_PGDN, KC_TRNS, KC_COMM, KC_DOT,  KC_SLSH, KC_TRNS, KC_TRNS, KC_TRNS, 
+KC_TRNS, KC_TRNS,          KC_TRNS, KC_VOLD, KC_TRNS, KC_VOLU, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS</textarea>
+      </div>
+      <br>
+
+      <h6>第三层</h6>
+      <div class="form-group mb-2 row">
+        <textarea class="form-control" rows="4" resize="no">KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12, 
+KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_BRID, KC_BRIU, KC_TRNS,          KC_TRNS, 
+KC_TRNS,          KC_PSCR, KC_SLCK, KC_PAUS, KC_TRNS, KC_MUTE, KC_VOLD, KC_VOLU, KC_TRNS, KC_TRNS, KC_TRNS, 
+KC_TRNS, KC_TRNS,          KC_TRNS, KC_BRID, RESET,   KC_BRIU, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS</textarea>
+      </div>
+      <br>
+
+      <h6>第四层</h6>
+      <div class="form-group mb-2 row">
+        <textarea class="form-control" rows="4" resize="no">KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, 
+KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,          KC_TRNS, 
+KC_TRNS,          KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, 
+KC_TRNS, KC_TRNS,          KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS</textarea>
+      </div>
+      <br>
+
+      <h4>其他</h4>
+      <div class="form-group mb-2 row">
+        <label for="bootmagic" class="col-sm-2 col-form-label">BootMagic</label>
+        <div class="col-sm-2">
+          <select class="custom-select custom-select-sm" id="bootmagic">
+            <option value="yes">yes</option>
+            <option value="no" selected>no</option>
+            <option value="lite">lite</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group mb-2 row">
+        <label for="mousekey" class="col-sm-2 col-form-label">Mouse Key</label>
+        <div class="col-sm-2">
+          <select class="custom-select custom-select-sm" id="mousekey">
+            <option value="yes">yes</option>
+            <option value="no" selected>no</option>
+          </select>
+        </div>
+      </div>
+    </form>
+    <br>
+
+    <p><button type="submit" class="btn btn-primary btn-sm">下载固件</button></p>
+  </div>
+
+  <script>
+    void function () {
+      function rules () {
+        var options = document.querySelectorAll('select');
+        return `
+MCU = atmega32u4
+F_CPU = 16000000
+F_USB = 16000000
+ARCH = AVR8
+BOOTLOADER = atmel-dfu
+OPT_DEFS += -DINTERRUPT_CONTROL_ENDPOINT
+OPT_DEFS += -DBOOTLOADER_SIZE=4096
+CONSOLE_ENABLE = no
+COMMAND_ENABLE = no
+BACKLIGHT_ENABLE = no
+SLEEP_LED_ENABLE = no
+RGBLIGHT_ENABLE = no
+AUDIO_ENABLE = no
+NKRO_ENABLE = yes
+EXTRAKEY_ENABLE = yes
+ENCODER_ENABLE = yes
+BOOTMAGIC_ENABLE = ${options[0].value}
+MOUSEKEY_ENABLE = ${options[1].value}`;
+      }
+
+      function config () {
+        return `
+#ifndef CONFIG_H
+#define CONFIG_H
+#include "config_common.h"
+#define VENDOR_ID 0xDE29
+#define PRODUCT_ID 0x7303
+#define DEVICE_VER 0x0002
+#define MANUFACTURER Leo Deng
+#define PRODUCT Xtrm
+#define DESCRIPTION Extremely borderless 40% keyboard with encoder
+#define DIODE_DIRECTION COL2ROW
+#define DEBOUNCING_DELAY 5
+#define TAP_CODE_DELAY 100
+#define LOCKING_RESYNC_ENABLE
+#define PREVENT_STUCK_MODIFIERS
+#define MATRIX_ROWS 4
+#define MATRIX_ROW_PINS { D2, D3, F1, B7 }
+#define MATRIX_COLS 12
+#define MATRIX_COL_PINS { F0, D5, F4, F5, F6, F7, C7, C6, B6, B5, B4, D4 }
+#define UNUSED_PINS
+#define ENCODERS_PAD_A { D7 }
+#define ENCODERS_PAD_B { D6 }
+#define NUMBER_OF_ENCODERS 1
+#define IS_COMMAND() ( keyboard_report->mods == (MOD_BIT(KC_LSHIFT) | MOD_BIT(KC_RSHIFT)) )
+#endif`;
+      }
+
+      function h () {
+        return `
+#ifndef KB_H
+#define KB_H
+#include "quantum.h"
+#define KEYMAP( K000, K001, K002, K003, K004, K005, K006, K007, K008, K009, K010, K011, K100, K101, K102, K103, K104, K105, K106, K107, K108, K109, K111, K200, K202, K203, K204, K205, K206, K207, K208, K209, K210, K211, K300, K301, K303, K304, K305, K306, K307, K308, K309, K310, K311 ) { { K000, K001, K002, K003, K004, K005, K006, K007, K008, K009, K010, K011 }, { K100, K101, K102, K103, K104, K105, K106, K107, K108, K109, KC_NO, K111 }, { K200, KC_NO, K202, K203, K204, K205, K206, K207, K208, K209, K210, K211 }, { K300, K301, KC_NO, K303, K304, K305, K306, K307, K308, K309, K310, K311 } }
+#endif`;
+      }
+
+      function keymap () {
+        var layers = document.querySelectorAll('textarea');
+        return `
+#include "kb.h"
+const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+  KEYMAP(
+  ${layers[0].value}),
+  KEYMAP(
+  ${layers[1].value}),
+  KEYMAP(
+  ${layers[2].value}),
+  KEYMAP(
+  ${layers[3].value})
+};
+void matrix_init_user(void) {}
+void matrix_scan_user(void) {}
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {return true;}
+void led_set_user(uint8_t usb_led) {
+  if (usb_led & (1 << USB_LED_CAPS_LOCK)) {
+    DDRD |= (1 << 1); PORTD &= ~(1 << 1);
+  } else {
+    DDRD &= ~(1 << 1); PORTD &= ~(1 << 1);
+  }
+}
+void encoder_update_user(uint8_t index, bool clockwise) {
+  uint8_t layer = biton32(layer_state);
+  if (clockwise) {
+    tap_code(keymap_key_to_keycode(layer, (keypos_t) {.row = 3, .col = 6 }));
+  } else {
+    tap_code(keymap_key_to_keycode(layer, (keypos_t) {.row = 3, .col = 4 }));
+  }
+}`;
+      }
+
+      document.querySelector('button').addEventListener('click', function (e) {
+        var payload = {
+          method: 'POST',
+          mode: 'cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            'qmk_firmware/keyboards/kb/rules.mk': rules(),
+            'qmk_firmware/keyboards/kb/config.h': config(),
+            'qmk_firmware/keyboards/kb/kb.h': h(),
+            'qmk_firmware/keyboards/kb/keymaps/default/keymap.c': keymap()
+          })
+        };
+        fetch('http://qmkeyboard.cn:5004/build', payload)
+          .then(response => response.json())
+          .then(data => saveAs(new Blob([data.hex], { type: 'application/octet-stream' }), 'xtrm.hex'));
+      }, false);
+    }()
+  </script>
+</body>
+</html>
