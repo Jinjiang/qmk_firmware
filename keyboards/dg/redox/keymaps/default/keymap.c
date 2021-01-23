@@ -36,7 +36,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┼─────────┐                          ┌─────────┼─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤
       XXXXXXX , RGB_M_P , RGB_M_B , RGB_M_R , RGB_M_SW, XXXXXXX , XXXXXXX ,                            KC_MPRV , RGB_MOD , RGB_HUI , RGB_SAI , RGB_VAI , XXXXXXX , XXXXXXX ,
   //├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤                          ├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤
-      XXXXXXX , RGB_M_SN, RGB_M_X , RGB_M_G , RGB_M_T , RGB_M_K , XXXXXXX ,                            XXXXXXX , RGB_RMOD, RGB_HUD , RGB_SAD , RGB_VAD , XXXXXXX , _______ ,
+      XXXXXXX , RGB_M_SN, RGB_M_X , RGB_M_G , RGB_M_T , RGB_M_K , KC_LAUNCHPAD ,            KC_MISSION_CONTROL , RGB_RMOD, RGB_HUD , RGB_SAD , RGB_VAD , XXXXXXX , _______ ,
   //├─────────┼─────────┼─────────┼─────────┼─────────┼─────────┼─────────┼─────────┐      ┌─────────┼─────────┼─────────┼─────────┼─────────┼─────────┼─────────┼─────────┤
       _______ , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX ,        XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , XXXXXXX , _______ ,
   //├─────────┼─────────┼─────────┼─────────┼────┬────┴────┬────┼─────────┼─────────┤      ├─────────┼─────────┼───┬─────┴───┬─────┼─────────┼─────────┼─────────┼─────────┤

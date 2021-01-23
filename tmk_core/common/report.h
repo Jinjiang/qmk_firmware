@@ -83,7 +83,10 @@ enum consumer_usages {
     AC_FORWARD             = 0x225,
     AC_STOP                = 0x226,
     AC_REFRESH             = 0x227,
-    AC_BOOKMARKS           = 0x22A
+    AC_BOOKMARKS           = 0x22A,
+    // Customized by Jinjiang
+    LAUNCHPAD              = 0x02a0,
+    MISSION_CONTROL        = 0x029F
 };
 
 /* Generic Desktop Page (0x01)
@@ -259,6 +262,10 @@ static inline uint16_t KEYCODE2CONSUMER(uint8_t key) {
             return BRIGHTNESS_UP;
         case KC_BRIGHTNESS_DOWN:
             return BRIGHTNESS_DOWN;
+        case KC_LAUNCHPAD:
+            return LAUNCHPAD;
+        case KC_MISSION_CONTROL:
+            return MISSION_CONTROL;
         case KC_WWW_FAVORITES:
             return AC_BOOKMARKS;
         default:
